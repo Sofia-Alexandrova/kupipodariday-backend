@@ -1,8 +1,8 @@
 {
   "name": "kupipodariday-backend",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Стартеркит проекта разработки бэкенд сервиса вишлистов КупиПодариДай",
+  "author": "Sofia-Alexandrova",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -21,34 +21,37 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^9.0.0",
-    "@nestjs/core": "^9.0.0",
+    "@nestjs/common": "^9.4.3",
+    "@nestjs/config": "^3.3.0",
+    "@nestjs/core": "^9.4.3",
     "@nestjs/jwt": "^9.0.0",
     "@nestjs/mapped-types": "^1.1.0",
-    "@nestjs/passport": "^9.0.0",
-    "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/passport": "^9.0.3",
+    "@nestjs/platform-express": "^9.4.3",
     "@nestjs/swagger": "^6.0.5",
-    "@nestjs/typeorm": "^9.0.0",
-    "bcrypt": "^5.0.1",
+    "@nestjs/typeorm": "^9.0.1",
+    "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "passport": "^0.6.0",
-    "passport-jwt": "^4.0.0",
+    "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
-    "pg": "^8.7.3",
-    "reflect-metadata": "^0.1.13",
+    "pg": "^8.16.3",
+    "reflect-metadata": "^0.1.14",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0",
-    "typeorm": "^0.3.7"
+    "rxjs": "^7.8.2",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.27",
+    "winston": "^3.18.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
-    "@types/bcrypt": "^5.0.0",
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^4.17.13",
     "@types/jest": "28.1.4",
-    "@types/node": "^16.0.0",
+    "@types/node": "^16.18.126",
     "@types/passport-jwt": "^3.0.6",
     "@types/passport-local": "^1.0.34",
     "@types/supertest": "^2.0.11",
@@ -64,8 +67,9 @@
     "ts-jest": "28.0.5",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
+    "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "4.0.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.9.5"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -83,5 +87,7 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "main": ".eslintrc.js",
+  "keywords": []
 }
