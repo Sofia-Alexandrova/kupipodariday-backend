@@ -20,7 +20,7 @@ export class Wishlist {
   name: string;
 
   @Column({ type: 'text', nullable: true })
-  description?: string; 
+  description?: string;
 
   @Column({ nullable: true })
   image?: string;
@@ -38,4 +38,3 @@ export class Wishlist {
   @UpdateDateColumn()
   updatedAt: Date;
 }
-

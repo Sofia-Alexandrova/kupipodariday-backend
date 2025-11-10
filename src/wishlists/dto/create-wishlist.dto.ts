@@ -16,5 +16,5 @@ export class CreateWishlistDto {
   @IsOptional()
   @ArrayNotEmpty()
   @ArrayUnique()
-  items?: number[]; // IDs of wishes
+  itemsId?: number[];
 }

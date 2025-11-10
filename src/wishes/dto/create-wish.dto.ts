@@ -3,7 +3,6 @@ import {
   IsOptional,
   IsNumber,
   IsUrl,
-  Min,
   MaxLength,
 } from 'class-validator';
 
@@ -22,7 +21,6 @@ export class CreateWishDto {
 
   @IsOptional()
   @IsNumber()
-  @Min(0)
   price?: number;
 
   @IsOptional()

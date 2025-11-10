@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In } from 'typeorm';
 import { Wishlist } from './wishlist.entity';
@@ -17,8 +21,11 @@ export class WishlistsService {
   async create(ownerId: number, dto: CreateWishlistDto): Promise<Wishlist> {
     const owner = await this.usersRepo.findOne({ where: { id: ownerId } });
     if (!owner) throw new NotFoundException('Owner not found');
-    const items = dto.items
-      ? await this.wishesRepo.find({ where: { id: In(dto.items) } })
+    const items = dto.itemsId
+      ? await this.wishesRepo.find({
+          where: { id: In(dto.itemsId) },
+          relations: ['owner'],
+        })
       : [];
     const wl = this.repo.create({
       name: dto.name,
@@ -37,9 +44,32 @@ export class WishlistsService {
     return this.repo.findOne({ where: { id }, relations: ['items', 'owner'] });
   }
 
-  async remove(id: number): Promise<void> {
-    const entity = await this.repo.findOne({ where: { id } });
+  async update(
+    id: number,
+    userId: number,
+    dto: CreateWishlistDto,
+  ): Promise<Wishlist> {
+    const entity = await this.repo.findOne({
+      where: { id },
+      relations: ['owner', 'items'],
+    });
     if (!entity) throw new NotFoundException('Wishlist not found');
-    await this.repo.remove(entity);
+    if (!entity.owner || entity.owner.id !== userId)
+      throw new ForbiddenException('Not owner');
+    const items = dto.itemsId
+      ? await this.wishesRepo.find({
+          where: { id: In(dto.itemsId) },
+          relations: ['owner'],
+        })
+      : entity.items;
+    entity.name = dto.name ?? entity.name;
+    entity.description = dto.description ?? entity.description;
+    entity.items = items;
+    return this.repo.save(entity);
+  }
+
+  async remove(id: number): Promise<void> {
+    const res = await this.repo.delete(id);
+    if (res.affected === 0) throw new NotFoundException('Wishlist not found');
   }
 }

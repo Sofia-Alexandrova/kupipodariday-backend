@@ -9,6 +9,7 @@ import {
 import { Wish } from '../wishes/wish.entity';
 import { Offer } from '../offers/offer.entity';
 import { Wishlist } from '../wishlists/wishlist.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity('users')
 export class User {
@@ -27,6 +28,7 @@ export class User {
   @Column({ unique: true, nullable: true })
   email?: string;
 
+  @Exclude()
   @Column()
   password: string;
 
